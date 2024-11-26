@@ -1,81 +1,81 @@
-# Telegram Captcha Bot
+# Telegram Bot with CAPTCHA and Stoplist Functionality
 
-Этот проект реализует Telegram-бота, который защищает чат от спамеров, проверяя новых участников с помощью капчи. Бот предлагает выбрать правильную эмодзи (ящерицу 🦎) среди случайных вариантов. Если участник не проходит проверку, он остается с ограниченными правами.
+This repository contains a Telegram bot implemented using the [Aiogram](https://docs.aiogram.dev/) framework. The bot is designed to manage chat members with CAPTCHA verification and includes functionality for maintaining a stoplist.
 
-### Функциональность
+## Features
 
-- ✅ Отслеживание новых участников в чате.
-- ✅ Ограничение возможности отправлять сообщения для новых участников.
-- ✅ Динамическая капча с рандомным расположением правильного ответа.
-- ✅ Безопасная проверка (хэширование ответа, уникальная соль для каждого участника).
-- ✅ Тайм-аут на прохождение капчи.
-- ✅ Логирование событий и ошибок.
+- **CAPTCHA Verification**: New members are required to solve a CAPTCHA by selecting the correct emoji.
+- **Stoplist Management**: Users can be restricted and managed via a stoplist.
+- **Message Lifetime**: Automatic deletion of bot messages after a configurable time.
+- **Easy Configuration**: Configuration through a `configs.py` file for API tokens and timeouts.
 
-### Установка
+## Project Structure
 
-1. Клонируйте репозиторий:
+- **`main.py`**: Entry point of the bot, containing the main logic.
+- **`bot_responses.py`**: Contains predefined bot messages for different scenarios.
+- **`captcha_questions.py`**: Logic for generating CAPTCHA questions and options.
+- **`configs.py`**: Configuration file for API tokens and timeout settings.
+- **`file_manager.py`**: Manages file operations like loading and saving stoplists.
+- **`stoplist_manager.py`**: Functions for handling the stoplist (add, remove, check users).
+- **`requirements.txt`**: Dependencies required to run the bot.
+
+## Installation
+
+1. **Clone the repository**:
    ```bash
-   git clone https://github.com/your_username/telegram-captcha-bot.git
-   cd telegram-captcha-bot
+   git clone https://github.com/your-username/your-repository.git
+   cd your-repository
 
-2. Установите зависимости:
+2. **Install dependencies**:
 
 pip install -r requirements.txt
 
-3. Настройте токен бота: В файле configs.py укажите токен вашего бота:
+3. **Set up configuration**:
 
-    API_TOKEN = "ВАШ_ТОКЕН_БОТА"
+    Edit the configs.py file to include your bot's API token:
 
-### Структура проекта
+    API_TOKEN = 'your-telegram-bot-token'
 
-telegram_bot/
-├── main.py            # Основной файл запуска бота
-├── captchaDB.py       # Логика работы с эмодзи и генерацией хэшей
-├── configs.py         # Настройки и конфигурации
-├── requirements.txt   # Зависимости
-└── README.md          # Документация проекта
-
-### Основные файлы
-
-    main.py: Управляет ботом, обрабатывает события Telegram (добавление участников, капчи и ответы).
-    captchaDB.py: Содержит логику генерации капчи и обработки хэшей.
-    configs.py: Конфигурации, такие как токен бота и тайм-аут капчи.
-    requirements.txt: Список зависимостей проекта.
-
-### Использование
-
-    Запустите бота:
+4. **Run the bot**:
 
     python main.py
 
-    Добавьте бота в ваш чат и назначьте его администратором с правами:
-        Ограничивать участников.
-        Удалять сообщения (опционально, если нужно удалять сообщения о капче).
+##  Usage
 
-    Теперь бот автоматически будет проверять новых участников.
+    Add the bot to a group to enable CAPTCHA verification for new members.
+    The bot restricts users who fail the CAPTCHA or are listed in the stoplist.
 
-### Логирование
+##  Files
 
-Бот использует логирование для отслеживания событий. Логи можно увидеть в консоли во время работы. Вы также можете настроить запись логов в файл, изменив настройки в main.py:
+    Procfile: Used for deployment on Heroku.
+    requirements.txt: Contains all the required dependencies.
+    Stoplist Files:
+        ModeratedUsers.txt or stoplist.csv is used to manage and store restricted users.
 
-logging.basicConfig(filename="bot.log", level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
+##  Configuration
 
-### Требования
+    CAPTCHA Settings:
+        Customize the CAPTCHA timeout and messages in configs.py and bot_responses.py.
+    Stoplist:
+        Manage the stoplist via the provided file management functions in stoplist_manager.py.
 
-    Python 3.8+
-    Установленные зависимости из requirements.txt
+##  Deployment
 
-### Безопасность
+    The project includes a Procfile for deployment on Heroku. To deploy:
 
-    Правильный ответ хэшируется с уникальной солью, что исключает возможность взлома капчи через подглядывание callback_data.
-    Бот игнорирует ответы, отправленные не целевым участником.
+    Commit all changes and push them to a GitHub repository.
+    Create a Heroku app:
 
-### Лицензия
+      heroku create
 
-Этот проект распространяется под лицензией MIT. См. LICENSE для подробностей.
+##  Deploy the app:
 
-### Пример:
+      git push heroku main
 
-### Связь
+##  Contributing
 
-Если у вас есть вопросы или предложения, создайте issue или напишите в тг @booksa_sh
+    Contributions are welcome! Please fork the repository and create a pull request with your changes.
+
+##  License
+
+    This project is licensed under the MIT License. See the LICENSE file for more details.
