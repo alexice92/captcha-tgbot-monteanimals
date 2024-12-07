@@ -203,7 +203,19 @@ async def on_captcha_response(callback_query: types.CallbackQuery):
         await bot.restrict_chat_member(
             chat_id,
             user_id,
-            permissions=ChatPermissions(can_send_messages=True)
+            permissions=ChatPermissions(
+                can_send_messages=True,
+                can_send_photos=True,
+                can_send_videos=True,
+                can_send_other_messages=True,
+                can_send_audios=True,
+                can_send_documents=True,
+                can_send_voice_notes=True,
+                can_send_video_notes=True,
+                can_add_link_previews=True,
+                can_send_polls=True,
+                can_invite_users=True
+            )
         )
 
         # Удаление из стоп-листа
