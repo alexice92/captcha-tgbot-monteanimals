@@ -213,6 +213,7 @@ async def on_captcha_response(callback_query: types.CallbackQuery):
                 can_send_voice_notes=True,
                 can_send_video_notes=True,
                 can_add_link_previews=True,
+                can_add_web_page_previews=True,
                 can_send_polls=True,
                 can_invite_users=True
             )
